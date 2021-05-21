@@ -24,7 +24,7 @@
 1. สามารถเข้ามาเตรียมตัวก่อนการสอบได้ตั้งแต่วันที่ 27 พฤษภาคม 2564 เวลา 14.30 น.
 1. ให้ล็อคอินเข้า Google Cloud Console ตามขั้นตอนดังนี้
   * เข้าไปที่หน้า <https://accounts.kmutt.ac.th/gappsauthen/login.php>
-    * __Google Apps Account__: devop[XXX] 
+    * __Google Apps Account__: devop[XXX]
     * __Password__: P@sswXX21@[XXX]
     * โดยที่ [XXX] คือเลข 3 ตัวท้ายของรหัสนักศึกษาของผู้เข้าสอบ
 1. ให้เข้าไปที่ [Google Cloud Console](https://console.cloud.google.com/) และกดปุ่ม Activate Cloud Shell ที่มุมขวาบน
@@ -41,9 +41,22 @@ kubectl get deployments
 
 ```bash
 kubectl get pod
-kubectl exec -it student169-result-[HASH] -- sh
+kubectl exec -it student[XXX]-result-[HASH] -- bash
 cd /exam
 pwd
+```
+
+1. ให้ทำการสร้างโฟลเดอร์สำหรับส่งคำตอบในแต่ละข้อด้วยคำสั่งข้างล่างนี้
+
+```bash
+mkdir {1..20}
+ls -l
+```
+
+1. ผู้เข้าสอบสามารถ copy file จาก Cloud Shell ไปยัง pod ได้ด้วยคำสั่งข้างล่างนี้
+
+```bash
+kubectl cp output.txt student[XXX]-result-[HASH]:/exam/3/output.txt
 ```
 
 ## [เริ่มทำการสอบ](../exams/index.md)
